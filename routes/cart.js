@@ -9,15 +9,15 @@ var router = express.Router()
 
 // All the GET requests
 router.get('/', function (req, res) {
-  // all movies view under INDEX.EJS
-  res.render('movies/index')
+  // all carts view under INDEX.EJS
+  res.render('cart/index')
 }).get('/new', function (req, res) {
   // NEW route under NEW.EJS
-  res.render('movies/new')
+  res.render('cart/new')
 }).get('/:id', function (req, res) {
-  res.send('movie\'s ' + req.params.id + ' details')
+  res.send('cart\'s ' + req.params.id + ' details')
 }).get('/:id/edit', function (req, res) {
-  res.send('edit movie\'s ' + req.params.id + ' details')
+  res.send('edit cart\'s ' + req.params.id + ' details')
 })
 
 // the only POST request
@@ -27,20 +27,26 @@ router.post('/', function (req, res) {
   // username: "primaulia",
   // userpassword: "test123"
   // }
-  // var posted_username = req.body.username
-  // var posted_password = req.body.userpassword
-  res.send(req.body)
-  // res.send('posted username is ' + posted_username + ' and posted password is: ' + posted_password)
+
+  var posted_product = req.body.product
+  var posted_price = req.body.price
+  var posted_quantity = req.body.quantity
+  var posted_user = req.body.user
+
+  // res.send(req.body)
+
+  res.send('posted product is: ' + posted_product + ' posted price: ' + posted_price + ' posted quantity is: ' + posted_quantity + ' posted user is: ' + posted_user)
+
 })
 
 // only PUT request
 router.put('/:id', function (req, res) {
-  res.send('edit movie' + req.params.id)
+  res.send('edit cart' + req.params.id)
 })
 
 // DELETE ROUTES
 router.delete('/:id', function (req, res) {
-  res.send('delete movie' + req.params.id)
+  res.send('delete cart' + req.params.id)
 })
 
 module.exports = router
